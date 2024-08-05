@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    Node *insertAtEnd(Node *head, int x) {
+        // Code here
+          Node* n = new Node(x);
+
+        if (head == nullptr) {
+            // If the list is empty, the new node becomes the head
+            return n;
+        }
+
+        Node *p=head;
+        while(p->next!=NULL){
+            p=p->next;
+        }
+       
+        p->next=n;
+        return head;
+        
+    }
+};
