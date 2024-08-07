@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    Node* deleteNode(Node* head, int x) {
+        // Your code here
+        if(head==NULL) return NULL;
+       if (x == 1) {
+            Node* temp = head;
+            head = head->next;
+            if (head != NULL) head->prev = NULL;
+            delete temp;
+            return head;
+        }
+        Node* current = head;
+        int count = 1;
+        while (current != NULL && count < x) {
+            current = current->next;
+            count++;
+        }
+
+        // If the node to be deleted is the last node
+        if (current->next == NULL) {
+            current->prev->next = NULL;
+            delete current;
+            return head;}
+       if (current != NULL) {
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            delete current;
+        }
+
+        return head;
+      
+        
+    }
+};
