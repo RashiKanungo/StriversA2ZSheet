@@ -1,0 +1,16 @@
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+  if (head == nullptr) return nullptr;
+       ListNode * tortoise=head;
+       ListNode * hare=head;
+       int x =0;
+
+       while(hare!=NULL && hare->next!=nullptr){
+        tortoise=tortoise->next;
+        
+        hare =hare->next->next;
+         } 
+         return tortoise;
+    }
+};
