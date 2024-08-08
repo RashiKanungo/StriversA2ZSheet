@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    // Function to find the length of a loop in the linked list.
+    int countNodesinLoop(struct Node *head) {
+        // Code here
+        if(head==NULL || head->next==NULL ) return 0;
+        Node * slow=head;
+        Node *fast=head;
+        int cnt=1;
+        
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(fast==slow){
+                fast=fast->next;
+                while(fast!=slow){
+                    cnt++;
+                    fast=fast->next;
+                }
+                return cnt;
+               
+            }
+        }
+        return 0;
+    }
+};
+
+//can be done using map as we can check when a node will be traversed twice hum uske timer se pichle wale ko subtract kar denge
