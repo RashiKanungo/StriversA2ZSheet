@@ -1,0 +1,26 @@
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+            if (head == NULL || head->next == NULL) {
+        delete head;
+        return NULL;
+    }
+
+       ListNode* tortoise = head;
+    ListNode* hare = head;
+    ListNode* prev = NULL;
+
+    // Move hare twice as fast as tortoise
+    while (hare != NULL && hare->next != NULL) {
+        hare = hare->next->next;
+        prev = tortoise;
+        tortoise = tortoise->next;
+    }
+
+    // Delete the middle node
+    prev->next = tortoise->next;
+    delete tortoise;
+
+    return head;
+    }
+};
