@@ -1,0 +1,71 @@
+class Solution {
+  public:
+  Node* reverseLinkedList(Node *head)
+{
+   // Initialize'temp' at
+   // head of linked list
+   Node* temp = head;  
+   
+   // Initialize pointer 'prev' to NULL,
+   // representing the previous node
+   Node* prev = NULL;  
+   
+   // Traverse the list, continue till
+   // 'temp' reaches the end (NULL)
+   while(temp != NULL){  
+       // Store the next node in
+       // 'front' to preserve the reference
+       Node* front = temp->next;  
+       
+       // Reverse the direction of the
+       // current node's 'next' pointer
+       // to point to 'prev'
+       temp->next = prev;  
+       
+        // Move 'prev' to the current
+        // node for the next iteration
+       prev = temp;  
+       
+        // Move 'temp' to the 'front' node
+        // advancing the traversal
+       temp = front; 
+   }
+   
+   // Return the new head of
+   // the reversed linked list
+   return prev;  
+}
+    Node* addOne(Node* head) {
+        // Your Code here
+        // return head of list after adding one
+        if(head==NULL ) return NULL;
+        if(head->next==NULL) {
+            head->data=head->data+1;
+            return head;
+        }
+        Node * newhead =reverseLinkedList(head);
+        Node * p=newhead;
+        Node * prev=NULL;
+        
+        while(p!=NULL){
+            if(p->data==9){
+                p->data=0;
+                prev=p;
+                p=p->next;
+                
+            }
+            else{
+                p->data=p->data+1;
+                break;
+            }
+        }
+        if(p==NULL){
+           Node * one=new Node(1);
+           prev->next=one;
+           
+        }
+        Node *ans= reverseLinkedList(newhead);
+        
+        return ans;
+    }
+};
