@@ -1,0 +1,37 @@
+class Solution {
+  public:
+    void deleteAllOccurOfX(struct Node** head_ref, int x) {
+        // If the list is empty
+        if (*head_ref == NULL) return;
+
+        // Handle nodes with value x at the head of the list
+        while (*head_ref != NULL && (*head_ref)->data == x) {
+            Node* temp = *head_ref;
+            *head_ref = (*head_ref)->next;
+            if (*head_ref != NULL) {
+                (*head_ref)->prev = NULL;
+            }
+            delete temp;
+        }
+
+        // Pointer to traverse the list
+        Node* current = *head_ref;
+
+        // Traverse the list and delete nodes with value x
+        while (current != NULL) {
+            if (current->data == x) {
+                Node* temp = current;
+                if (current->next != NULL) {
+                    current->next->prev = current->prev;
+                }
+                if (current->prev != NULL) {
+                    current->prev->next = current->next;
+                }
+                current = current->next;
+                delete temp;
+            } else {
+                current = current->next;
+            }
+        }
+    }
+};
