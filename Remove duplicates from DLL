@@ -1,0 +1,21 @@
+class Solution
+{
+public:
+
+    Node * removeDuplicates(struct Node *head)
+    {
+        // Your code here
+        if(head==NULL || head->next==NULL) return head;
+        Node * p=head->next;
+        while(p!=NULL){
+            if(p->data==p->prev->data){
+                p->prev->next=p->next;
+                if(p->next!=NULL){
+                    p->next->prev=p->prev;
+                }
+            }
+            p=p->next;
+        }
+        return head;
+    }
+};
